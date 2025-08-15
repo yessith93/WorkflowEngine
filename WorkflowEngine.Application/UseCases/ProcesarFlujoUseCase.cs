@@ -78,7 +78,8 @@ namespace WorkflowEngine.Application.UseCases
 
                 var resultado = new ResultadoProcesarFlujo
                 {
-                    IdFlujoActivo = idFlujoActivo
+                    IdFlujoActivo = idFlujoActivo,
+                    Exitoso =true
                 };
 
                 // Si la preparación es válida, ejecutar pasos
@@ -150,7 +151,7 @@ namespace WorkflowEngine.Application.UseCases
                     // Preparar siguiente secuencia
                     preparacionActual = await _prepararSecuenciaUseCase.ExecuteAsync(
                         idSiguienteSecuencia.Value,
-                        new Dictionary<int, string>(),
+                        preparacionActual.DatosPreparados,
                         flujoActivo.Id);
 
                     if (!preparacionActual.EsValido && preparacionActual.CamposRequeridos?.Any() == true)
