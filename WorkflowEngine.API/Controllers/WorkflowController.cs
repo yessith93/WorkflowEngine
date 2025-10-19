@@ -178,35 +178,5 @@ namespace WorkflowEngine.API.Controllers
                 return StatusCode(500, ApiResponse<object>.ErrorResponse("Error interno del servidor"));
             }
         }
-
-        /// <summary>
-        /// Obtiene el estado actual de un flujo
-        /// </summary>
-        /// <param name="flujoActivoId">ID del flujo activo</param>
-        /// <returns>Estado del flujo</returns>
-        [HttpGet("{flujoActivoId}/estado")]
-        [ProducesResponseType(typeof(ApiResponse<object>), 200)]
-        [ProducesResponseType(typeof(ApiResponse<object>), 404)]
-        public async Task<ActionResult<ApiResponse<object>>> ObtenerEstadoFlujo([FromRoute] int flujoActivoId)
-        {
-            try
-            {
-                // Aquí podrías implementar un caso de uso para consultar estado
-                // Por ahora retornamos un placeholder
-
-                _logger.LogInformation("Consultando estado del flujo: {FlujoActivoId}", flujoActivoId);
-
-                return Ok(ApiResponse<object>.SuccessResponse(new
-                {
-                    FlujoActivoId = flujoActivoId,
-                    Mensaje = "Endpoint de consulta de estado - Por implementar"
-                }));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al consultar estado del flujo: {FlujoActivoId}", flujoActivoId);
-                return StatusCode(500, ApiResponse<object>.ErrorResponse("Error interno del servidor"));
-            }
-        }
     }
 }
